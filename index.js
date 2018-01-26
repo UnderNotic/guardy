@@ -1,4 +1,4 @@
-function guardys(obj) {
+function guardy(obj) {
     return new Proxy(obj, {
         get: function (target, name) {
             var t = target[name];
@@ -7,12 +7,12 @@ function guardys(obj) {
                 return t;
             }
 
-            return guardys(t || {});
-}
+            return guardy(t || {});
+        }
     });
 }
 
-function guardy(obj, defaulty) {
+function guardyWithFallback(obj, defaulty = null) {
     return new Proxy(obj, {
         get: function (target, name) {
             if (name === "__value__") {
@@ -27,17 +27,12 @@ function guardy(obj, defaulty) {
                 t.__value__ = t || defaulty;
             }
 
-            return guardy(t || { __exists__: false, __value__: defaulty });
+            return guardyWithFallback(t || { __exists__: false, __value__: defaulty });
         }
     });
 }
 
-
-let x = {
-    name: {
-        first: "Peter"
-    }
-};
-
-var x2 = guardy(x).name.first.a.b;
-console.log(x2);
+module.exports = {
+    guardy,
+    guardyWithFallback
+}
