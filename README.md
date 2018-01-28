@@ -2,6 +2,6 @@
 
 Simple and natural nested property accessor.
 
-#Compatibility
+# Compatibility
 - nodejs >= 6.4.0 
 - browser with Proxy compatibility, see https://caniuse.com/#search=Proxy
