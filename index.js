@@ -18,16 +18,14 @@ function guardyWithFallback(obj, defaulty = null) {
             if (name === "__value__") {
                 return target.__value__;
             }
-
-            var t = target[name];
-            if (typeof t !== "object" && t !== undefined && t !== null) {
-                return t;
-            }
-            if (typeof t === "object" && t !== defaulty) {
-                t.__value__ = t || defaulty;
+            
+            var t = target[name];            
+            if (typeof t !== "object") {
+               return guardyWithFallback( {__value__: t || defaulty });
             }
 
-            return guardyWithFallback(t || { __exists__: false, __value__: defaulty });
+            t.__value__ = t;
+            return guardyWithFallback(t);
         }
     });
 }

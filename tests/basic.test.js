@@ -46,10 +46,8 @@ describe("Guardy", () => {
 });
 
 describe("Guardy with fallback", () => {
-    test("should return correct primitive value", () => {
-        expect(guardyWithFallback(testObj).s1).toBe(testObj.s1);
+    test("should return correct __value__ for primitive value", () => {
         expect(guardyWithFallback(testObj).s1.__value__).toBe(testObj.s1);
-        expect(guardyWithFallback(testObj).n1).toBe(testObj.n1);
         expect(guardyWithFallback(testObj).n1.__value__).toBe(testObj.n1);
     });
 
@@ -58,22 +56,19 @@ describe("Guardy with fallback", () => {
         expect(guardyWithFallback(testObj).obj1.obj2.__value__).toEqual(testObj.obj1.obj2);
     });
 
-    test("should return correct __exists__", () => {
-        expect(guardyWithFallback(testObj).obj1.__exists__).toBe(true);
-        expect(guardyWithFallback(testObj).obj1.obj2.__exists__).toBe(true);
-        expect(guardyWithFallback(testObj).a.b.c.__exists__).toBe(false);
-        expect(guardyWithFallback(testObj).obj1.a.b.c.__exists__).toBe(false);
+    test("should return correct  __value__ for function", () => {
     });
 
-    test("should fallback to empty object", () => {
-        expect(Object.keys(guardyWithFallback(testObj).a.b.c)).toEqual(["__exists__", "__value__"]);
-        expect(Object.keys(guardyWithFallback(testObj).obj1.a.b.c)).toEqual(["__exists__", "__value__"]);
-        expect(Object.keys(guardyWithFallback(testObj).obj1.obj2.a.b.c.d)).toEqual(["__exists__", "__value__"]);
+    test("should return correct  __value__ for array", () => {
     });
 
-    test("should throw when trying access property of primitive", () => {
-        expect(() => guardyWithFallback(testObj).s1.a.b).toThrow();
-        expect(() => guardyWithFallback(testObj.func1.a.b)).toThrow();
+    test("should fallback to null (default)", () => {
+        expect(Object.keys(guardyWithFallback(testObj).a.b.c)).toEqual(["__value__"]);
+        expect(guardyWithFallback(testObj).a.b.c.__value__).toBe(null);
+        expect(Object.keys(guardyWithFallback(testObj).obj1.a.b.c)).toEqual(["__value__"]);
+        expect(guardyWithFallback(testObj).obj1.a.b.c.__value__).toBe(null);
+        expect(Object.keys(guardyWithFallback(testObj).obj1.obj2.a.b.c.d)).toEqual(["__value__"]);
+        expect(guardyWithFallback(testObj).obj1.obj2.a.b.c.d.__value__).toBe(null);
     });
 
     test("returned and original are not the same", () => {
