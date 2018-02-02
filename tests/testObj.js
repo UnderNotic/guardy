@@ -1,6 +1,7 @@
 module.exports = {
     s1: "s1",
     n1: 1,
+    arr1: [],
     func1: function () {
         return "func1result";
     },

@@ -14,13 +14,17 @@ describe("Guardy", () => {
 
     test("should fallback to empty object", () => {
         expect(Object.keys(guardy(testObj).a.b.c)).toEqual([]);
+        expect(guardy(testObj).a.b.c).toMatchObject({});
         expect(Object.keys(guardy(testObj).obj1.a.b.c)).toEqual([]);
+        expect(guardy(testObj).obj1.a.b.c).toMatchObject({});
         expect(Object.keys(guardy(testObj).obj1.obj2.a.b.c.d)).toEqual([]);
+        expect(guardy(testObj).obj1.obj2.a.b.c.d).toMatchObject({});
     });
 
-    test("should throw when trying access property of primitive", () => {
+    test("should throw when trying to access property of non-object", () => {
         expect(() => guardy(testObj).s1.a.b).toThrow();
         expect(() => guardy(testObj.func1.a.b)).toThrow();
+        expect(() => guardy(testObj.obj1.obj2.n2.a.b.c.d)).toThrow();
     });
 
     test("returned and original are not the same", () => {

@@ -27,6 +27,19 @@ describe("Guardy with fallback", () => {
         expect(guardyWithFallback(testObj).obj1.obj2.a.b.c.d.__value__).toBe(null);
     });
 
+    test("should fallback to null (default) when trying to access property of primitive", () => {
+        expect(guardyWithFallback(testObj).s1.a.b.__value__).toBe(null);
+        expect(guardyWithFallback(testObj).obj1.obj2.n2.a.b.c.d.__value__).toBe(null);
+    });
+
+    test("should fallback to null (default) when trying to access property of function", () => {
+        expect(guardyWithFallback(testObj.func1.a.b.__value__)).toBe(null);
+    });
+
+    test("should fallback to null (default) when trying to access property of array", () => {
+        expect(guardyWithFallback(testObj.arr1.a.b.__value__)).toBe(null);
+    });
+
     test("returned and original are not the same", () => {
         expect(guardyWithFallback(testObj)).not.toBe(testObj);
     });
