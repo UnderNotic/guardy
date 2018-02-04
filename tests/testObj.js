@@ -1,3 +1,13 @@
+class Test{
+    constructor(){
+        this.s3 = "s3";
+    }
+
+    func3(){
+        return "func3";
+    }
+}
+
 module.exports = {
     s1: "s1",
     n1: 1,
@@ -14,5 +24,6 @@ module.exports = {
                 return "fun2result"
             }
         }
-    }
+    },
+    customObj: new Test()
 }
