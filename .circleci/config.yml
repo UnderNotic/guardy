@@ -40,8 +40,8 @@ jobs:
     requires:
         - build
     docker:
-      # specify the version you desire here
         - image: circleci/node:7.10
+    working_directory: ~/repo
     steps:
         - run: npm test
 workflows:
