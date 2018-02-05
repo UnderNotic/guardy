@@ -30,6 +30,12 @@ function guardyWithFallback(obj, defaulty = null) {
     });
 }
 
+function handleInput(input){
+    if(Object.prototype.toString.call(input) !== "[object Object]"){
+        throw new Error("Guardy works only with objects!");
+    }
+}
+
 if (process.env.BUNDLE_FORMAT === "IIFE") {
     window.guardy = guardy;
     window.guardyWithFallback = guardyWithFallback;
