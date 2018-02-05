@@ -31,20 +31,13 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
         
-      # run tests!
       - run: npm run build
       - run: npm run build-iife
-  test:
-    requires:
-        - build
-    docker:
-        - image: circleci/node:7.10
-    steps:
-        - checkout
-        - run: npm test
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test
+      - run: npm test
+
+deployment:
+  npm:
+    branch: master
+    tag: /v[0-9]+(\.[0-9]+)*/
+    commands:
+      - npm publish
