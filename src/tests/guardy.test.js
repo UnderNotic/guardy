@@ -30,4 +30,12 @@ describe("Guardy", () => {
     test("returned and original are not the same", () => {
         expect(guardy(testObj)).not.toBe(testObj);
     });
+
+    test("should work only with objects", () => {
+        expect(() => guardy("")).toThrow("Guardy works only with objects!");
+        expect(() => guardy(1)).toThrow("Guardy works only with objects!");
+        expect(() => guardy([])).toThrow("Guardy works only with objects!");
+        expect(() => guardy(() => {})).toThrow("Guardy works only with objects!");
+        expect(() => guardy(function(){})).toThrow("Guardy works only with objects!");
+    });
 });

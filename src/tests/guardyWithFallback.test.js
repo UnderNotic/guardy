@@ -62,4 +62,12 @@ describe("Guardy with fallback", () => {
     test("returned and original are not the same", () => {
         expect(guardyWithFallback(testObj)).not.toBe(testObj);
     });
+
+    test("should work only with objects", () => {
+        expect(() => guardyWithFallback("")).toThrow("Guardy works only with objects!");
+        expect(() => guardyWithFallback(1)).toThrow("Guardy works only with objects!");
+        expect(() => guardyWithFallback([])).toThrow("Guardy works only with objects!");
+        expect(() => guardyWithFallback(() => {})).toThrow("Guardy works only with objects!");
+        expect(() => guardyWithFallback(function(){})).toThrow("Guardy works only with objects!");
+    });
 });
