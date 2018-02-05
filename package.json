@@ -1,12 +1,18 @@
 {
   "name": "guardy",
   "version": "0.0.1",
-  "license": "MIT" , 
+  "license": "MIT",
   "description": "Simple and natural nested property accessor.",
   "main": "guardy.js",
   "engines": {
     "node": ">= 6.4.0"
   },
+  "keywords": [
+    "guardy",
+    "getter",
+    "accessor",
+    "library"
+  ],
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
