@@ -37,6 +37,8 @@ jobs:
       - run: npm run build
       - run: npm run build-iife
   test:
+    requires:
+        - build
     docker:
       # specify the version you desire here
         - image: circleci/node:7.10
