@@ -34,6 +34,16 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: yarn test
-
-
+      - run: npm run build
+      - run: npm run build-iife
+  test:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+      - run: npm test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
