@@ -18,10 +18,10 @@ function guardyWithFallback(obj, defaulty = null) {
             if (name === "__value__") {
                 return target.__value__ || defaulty;
             }
-            
-            var t = target[name];            
+
+            var t = target[name];
             if (typeof t !== "object") {
-               return guardyWithFallback( {__value__: t }, defaulty);
+                return guardyWithFallback({ __value__: t }, defaulty);
             }
 
             t.__value__ = t;
@@ -30,7 +30,12 @@ function guardyWithFallback(obj, defaulty = null) {
     });
 }
 
-module.exports = {
-    guardy,
-    guardyWithFallback
+if (process.env.BUNDLE_FORMAT === "IIFE") {
+    window.guardy = guardy;
+    window.guardyWithFallback = guardyWithFallback;
+} else {
+    module.exports = {
+        guardy,
+        guardyWithFallback
+    }
 }

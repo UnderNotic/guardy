@@ -1,17 +1,24 @@
 {
   "name": "guardy",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "license": "MIT" , 
+  "description": "Simple and natural nested property accessor.",
+  "main": "guardy.js",
+  "engines": {
+    "node": ">= 6.4.0"
+  },
   "scripts": {
     "test": "jest",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "build": "cross-env NODE_ENV=production rollup --config",
+    "build-iife": "cross-env NODE_ENV=production rollup --config rollup.config.iife.js"
   },
   "devDependencies": {
-    "rollup": "^0.55.3",
     "coveralls": "^3.0.0",
-    "jest": "^22.1.4"
-  },
-  "author": "",
-  "license": "ISC"
+    "jest": "^22.1.4",
+    "rollup": "^0.55.3",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-uglify": "^3.0.0",
+    "cross-env": "^5.1.3"
+  }
 }
