@@ -3,7 +3,7 @@ function guardy(obj) {
         get: function (target, name) {
             var t = target[name];
 
-            if (typeof t !== "object" && t !== undefined && t !== null) {
+            if (isNotObject(t) && t !== undefined && t !== null) {
                 return t;
             }
 
@@ -20,7 +20,7 @@ function guardyWithFallback(obj, defaulty = null) {
             }
 
             var t = target[name];
-            if (typeof t !== "object") {
+            if (isNotObject(t)) {
                 return guardyWithFallback({ __value__: t }, defaulty);
             }
 
@@ -30,10 +30,15 @@ function guardyWithFallback(obj, defaulty = null) {
     });
 }
 
-function handleInput(input){
-    if(Object.prototype.toString.call(input) !== "[object Object]"){
+function initialCheck(obj, cb){
+    if(isNotObject(obj)){
         throw new Error("Guardy works only with objects!");
     }
+    return cb();
+}
+
+function isNotObject(value){
+    return Object.prototype.toString.call(value) !== "[object Object]";
 }
 
 if (process.env.BUNDLE_FORMAT === "IIFE") {
@@ -41,7 +46,7 @@ if (process.env.BUNDLE_FORMAT === "IIFE") {
     window.guardyWithFallback = guardyWithFallback;
 } else {
     module.exports = {
-        guardy,
-        guardyWithFallback
+        guardy: (obj) => initialCheck(obj, guardy.bind(null, obj)),
+        guardyWithFallback: (obj, defaulty) => initialCheck(obj, guardyWithFallback.bind(null, obj, defaulty))
     }
 }
