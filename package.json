@@ -16,7 +16,8 @@
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
-    "build": "cross-env NODE_ENV=production rollup --config",
+    "build": "npm run build-umd && npm run build-iife",
+    "build-umd": "cross-env NODE_ENV=production rollup --config",
     "build-iife": "cross-env NODE_ENV=production rollup --config rollup.config.iife.js"
   },
   "devDependencies": {
