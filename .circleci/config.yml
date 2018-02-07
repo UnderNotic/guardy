@@ -12,18 +12,18 @@ jobs:
     steps:
       - checkout
       - run: yarn install
-      - save_cache:
-          key: v1-repo-{{ checksum "package.json" }}
-          paths:
-            - ~/checkout-dir
       - run: npm run build
       - run: npm test
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/checkout-dir
   npm_publish:
     docker:
       - image: circleci/node:7.10
     steps:
       - restore_cache:
-          key: v1-repo-{{ checksum "package.json" }}
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: setup npm
           command: |
@@ -32,9 +32,25 @@ jobs:
       
 workflows:
   version: 2
-  build_and_test:
+  build:
     jobs:
       - build_and_test
+  build_and_deploy:
+    jobs:
+      - build_and_test
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              only: master
+      - npm_publish
+          requires:
+            - build_and_test
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              only: master
 
 deployment:
   npm:
