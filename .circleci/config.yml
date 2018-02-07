@@ -32,10 +32,10 @@ jobs:
       
 workflows:
   version: 2
-  build:
+  -build:
     jobs:
       - build_and_test
-  build_and_deploy:
+  -build_and_deploy:
     jobs:
       - build_and_test
           filters:
