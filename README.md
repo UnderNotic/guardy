@@ -1,7 +1,11 @@
 # <img height="250" alt="portfolio_view" src="https://raw.githubusercontent.com/undernotic/guardy/master/img/logo-title.png">
 
-[![CircleCI](https://circleci.com/gh/UnderNotic/guardy.svg?style=svg)](https://circleci.com/gh/UnderNotic/guardy)&nbsp;&nbsp;
+[![CircleCI](https://circleci.com/gh/UnderNotic/guardy.svg?style=svg)](https://circleci.com/gh/UnderNotic/guardy)
 [![Coverage Status](https://coveralls.io/repos/github/UnderNotic/guardy/badge.svg?branch=master)](https://coveralls.io/github/UnderNotic/guardy?branch=master)
+[![BCH compliance](https://bettercodehub.com/edge/badge/UnderNotic/guardy?branch=master)](https://bettercodehub.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[![NPM](https://nodei.co/npm/guardy.png)](https://nodei.co/npm/guardy/)
 
 Simple and natural nested property accessor.
 
