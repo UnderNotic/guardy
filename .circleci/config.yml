@@ -2,9 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-dependencies:
-  pre:
-    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
 version: 2
 jobs:
   checkout_code:
@@ -15,7 +13,7 @@ jobs:
         - checkout
         - run: yarn install
         - save_cache:
-            key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+            key: v1-repo-{{ checksum "package.json" }}
             paths:
               - ~/checkout-dir
   build_and_test:
@@ -24,10 +22,10 @@ jobs:
     working_directory: ~/checkout-dir      
     steps:
       - restore_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-repo-{{ checksum "package.json" }}
       - run: yarn install
       - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-repo-{{ checksum "package.json" }}
           paths:
             - ~/checkout-dir
       - run: npm run build
