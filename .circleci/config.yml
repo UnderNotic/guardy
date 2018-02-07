@@ -21,6 +21,7 @@ jobs:
   npm_publish:
     docker:
       - image: circleci/node:7.10
+    working_directory: ~/checkout-dir            
     steps:
       - restore_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
