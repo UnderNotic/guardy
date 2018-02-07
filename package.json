@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "license": "MIT",
   "description": "Simple and natural nested property accessor.",
-  "main": "guardy.js",
+  "main": "dist/guardy.js",
   "engines": {
     "node": ">= 6.4.0"
   },
