@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run: yarn install
       - run: npm run build
-      - run: npm test
+      - run: npm run test-coverage
       - save_cache:
           key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
