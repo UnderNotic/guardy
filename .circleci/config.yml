@@ -35,9 +35,6 @@ workflows:
   build:
     jobs:
       - build_and_test
-
-workflows:
-  version: 2 
   build_and_deploy:
     jobs:
       - build_and_test
@@ -54,10 +51,3 @@ workflows:
               only: /v[0-9]+(\.[0-9]+)*/
             branches:
               only: master
-
-deployment:
-  npm:
-    branch: master
-    tag: /v[0-9]+(\.[0-9]+)*/
-    commands:
-      - npm publish
