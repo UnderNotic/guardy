@@ -10,6 +10,7 @@
 Simple and natural nested property accessor.
 
 # Installing
+
 Package is available in npm. It's in umd format so it will work correctly with all popular bundlers(webpack) and also nodejs.
 
 ```bash
@@ -17,16 +18,24 @@ npm install guardy --save
 ```
 
 Using yarn
+
 ```bash
 yarn add guardy --save
 ```
 
 For direct usage without bundler, use iife format and import file directly:
+
 ```html
 <script src="dist/guardy-iife.min.js"></script>
 ```
-# Basic usage
+
+# Usage
 
 # Compatibility
-- nodejs >= 6.4.0 
-- browser with Proxy compatibility, see https://caniuse.com/#search=Proxy
+
+* nodejs >= 6.4.0
+* browser with Proxy compatibility, see https://caniuse.com/#search=Proxy
+
+# Licensing
+
+The code in this project is licensed under MIT license.
