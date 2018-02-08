@@ -12,7 +12,7 @@ function guardy(obj) {
     });
 }
 
-function guardyWithFallback(obj, defaulty = null) {
+function guardyFb(obj, defaulty = null) {
     return new Proxy(obj, {
         get: function (target, name) {
             if (name === "__value__") {
@@ -21,11 +21,11 @@ function guardyWithFallback(obj, defaulty = null) {
 
             var t = target[name];
             if (isNotObject(t)) {
-                return guardyWithFallback({ __value__: t }, defaulty);
+                return guardyFb({ __value__: t }, defaulty);
             }
 
             t.__value__ = t;
-            return guardyWithFallback(t, defaulty);
+            return guardyFb(t, defaulty);
         }
     });
 }
@@ -43,10 +43,10 @@ function isNotObject(value){
 
 if (process.env.BUNDLE_FORMAT === "IIFE") {
     window.guardy = guardy;
-    window.guardyWithFallback = guardyWithFallback;
+    window.guardyWithFallback = guardyFb;
 } else {
     module.exports = {
         guardy: (obj) => initialCheck(obj, guardy.bind(null, obj)),
-        guardyWithFallback: (obj, defaulty) => initialCheck(obj, guardyWithFallback.bind(null, obj, defaulty))
+        guardyFb: (obj, defaulty) => initialCheck(obj, guardyFb.bind(null, obj, defaulty))
     }
 }

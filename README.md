@@ -7,7 +7,7 @@
 
 [![NPM](https://nodei.co/npm/guardy.png)](https://nodei.co/npm/guardy/)
 
-Simple and natural nested property accessor.    
+Simple and natural nested property accessor.  
 Protect yourself from "Cannot read property 'x' of undefined" runtime exception.
 
 # Installing
@@ -31,6 +31,39 @@ For direct usage without bundler, use iife format and import file directly:
 ```
 
 # Usage
+
+Wrap object with guardy and then access with no stress any property at any nested level.
+If not defined it will fallback to empty object {} instead of throwing "Cannot read property 'x' of undefined" runtime exception.
+
+```javascript
+import { guardy } from "guardy";
+
+var nestedProp = guardy(myObj).I.can.safely.access.any.property;
+```
+
+With defined fallback value
+
+```javascript
+import { guardyFb } from "guardy";
+
+var nestedProp = guardyFb(myObj, "myFallBackStringOrAnyType").I.can.safely.access.any.property.__value__;
+```
+
+Guardy can be successfully used together with redux when trying to access not yet initialized state properties by providing safe fallback values.
+
+```javascript
+const mapStateToProps = ({ NestedReducerState }) => (
+    {
+       var nestedStateObject = guardy(NestedReducerState).a.nested.object;
+       var nestedStateString = guardyWithFallback(NestedReducerState, "defaultString").a.nested.string.__value__;
+
+       return {
+           nestedStateObject,
+           nestedStateString
+       }
+    }
+);
+```
 
 # Compatibility
 
