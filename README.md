@@ -7,7 +7,8 @@
 
 [![NPM](https://nodei.co/npm/guardy.png)](https://nodei.co/npm/guardy/)
 
-Simple and natural nested property accessor.
+Simple and natural nested property accessor.    
+Protect yourself from "Cannot read property 'x' of undefined" runtime exception.
 
 # Installing
 
