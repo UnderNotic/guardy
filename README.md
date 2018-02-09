@@ -4,6 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/UnderNotic/guardy/badge.svg?branch=master)](https://coveralls.io/github/UnderNotic/guardy?branch=master)
 [![BCH compliance](https://bettercodehub.com/edge/badge/UnderNotic/guardy?branch=master)](https://bettercodehub.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![dependencies Status](https://david-dm.org/undernotic/guardy/status.svg)](https://david-dm.org/undernotic/guardy)
 
 [![NPM](https://nodei.co/npm/guardy.png)](https://nodei.co/npm/guardy/)
 
