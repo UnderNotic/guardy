@@ -1,5 +1,6 @@
 import replace from 'rollup-plugin-replace';
 import { name } from './package.json';
+import babel from 'rollup-plugin-babel';
 
 export default {
   input: 'src/index.js',
@@ -12,6 +13,9 @@ export default {
   plugins: [
     replace({
       'process.env.BUNDLE_FORMAT': JSON.stringify('UMD')
+    }),
+    babel({
+      exclude: 'node_modules/**',
     })
   ]
 };
