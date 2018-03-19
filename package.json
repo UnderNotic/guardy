@@ -7,12 +7,18 @@
   "engines": {
     "node": ">= 6.4.0"
   },
+  
   "keywords": [
     "guardy",
     "getter",
     "accessor",
     "library"
   ],
+  "author": {
+    "name": "Piotr Szymura",
+    "email": "undernotic@gmail.com",
+    "url": "https://deaddesk.top/"
+  },
   "scripts": {
     "test": "jest",
     "test-coverage": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
