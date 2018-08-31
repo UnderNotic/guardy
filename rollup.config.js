@@ -1,21 +1,27 @@
-import replace from 'rollup-plugin-replace';
-import { name } from './package.json';
-import babel from 'rollup-plugin-babel';
+import replace from "rollup-plugin-replace";
+import babel from "rollup-plugin-babel";
+import pkg from "./package.json";
 
 export default {
-  input: 'src/index.js',
-  output: {
-    file: `dist/${name}.js`,
-    format: 'umd',
-    name: name,
-    sourcemap: true
-  },
+  input: "src/index.js",
+  output: [
+    {
+      file: pkg.main,
+      format: "umd",
+      sourcemap: true
+    },
+    {
+      file: pkg.module,
+      format: "es",
+      sourcemap: true
+    }
+  ],
   plugins: [
     replace({
-      'process.env.BUNDLE_FORMAT': JSON.stringify('UMD')
+      "process.env.BUNDLE_FORMAT": JSON.stringify("UMD")
     }),
     babel({
-      exclude: 'node_modules/**',
+      exclude: "node_modules/**"
     })
   ]
 };
